@@ -1,0 +1,55 @@
+{% extends 'journal/base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-col-12">
+    </br>
+      <div class="mb-3">
+        <h3>Create new post</h3>
+      </div>
+
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="title" class="form-label">Post Title</label>
+          <input type="text" class="form-control" id="title" name="title" aria-describedby="title" placeholder="Your post title here. Required field.">
+
+        </div>
+        <div class="mb-3">
+          <label for="text" class="form-label">Post Content</label>
+          <input type="text" class="form-control" id="text" name="text" placeholder="What are you thinking about? Put it in 2000 symbols">
+        </div>
+        <div class="mb-3">
+          <label for="text" class="form-label">Image</label>
+          <input type="text" class="form-control" id="text" name="text" placeholder="Any pic to add to your post?">
+        </div>
+        <div class="mb-3">
+          <label for="text" class="form-label">Audio</label>
+          <input type="text" class="form-control" id="text" name="text" placeholder="Audio goes here">
+        </div>
+        <div class="mb-3">
+          <label for="text" class="form-label">Video</label>
+          <input type="text" class="form-control" id="text" name="text" placeholder="Video goes here">
+        </div>
+        <div class="mb-3">
+          <label for="text" class="form-label">Rubrique</label>
+        </br>
+          {% for rubric in rubric_choices %}
+
+          <input type="radio" class="form-radio" id="rubric" name="rubric" value="{{rubric}}">
+          <label for="rubric">{{rubric.0}}</label>
+          {% endfor %}
+
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="private" name="private">
+          <label class="form-check-label" for="private">Keep this post visible only for me</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
