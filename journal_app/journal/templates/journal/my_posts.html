@@ -19,13 +19,19 @@
         <div class="card-body">
           <h5 class="card-title">{{post.title}}</h5>
           <p class="card-text">{{post.text}}</p>
+          <p class="card-text">{{post.image}}</p>
+          <p class="card-text">{{post.audio}}</p>
+          <p class="card-text">{{post.video}}</p>
+          <p class="card-text">{{post.rubric}}</p>
           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
+          {% if post.private == True %}
+            <p class="card-text"><small class="text-muted">Visible to: only myself</small></p>
+          {% endif %}
       </div>
       {% endfor %}
     </div>
     <div class="col">
-      <button class="btn btn-primary"><a href="{% url 'create_post' %}">New Post</a></button>
+      <a href="{% url 'create_post' %}"><button class="btn btn-primary">New Post</button></a>
     </div>
   </div>
 </div>
