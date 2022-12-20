@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from .models import Post, RUBRIC_CHOICES
 from django.contrib.auth.models import User
 from django.views.generic.edit import UpdateView, DeleteView
@@ -42,3 +43,8 @@ class PostUpdate(UpdateView):
   template_name = 'journal/post_update.html'
   fields = "__all__"
   success_url = '/journal/my_posts/'
+
+class PostDelete(DeleteView):
+  model = Post
+  template_name = 'journal/post_delete.html'
+  success_url = reverse_lazy('my_posts')

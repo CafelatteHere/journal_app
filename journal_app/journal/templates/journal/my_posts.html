@@ -29,6 +29,7 @@
           {% endif %}
           {% if post.owner == request.user %}
             <a href="{% url 'update_post' post.id %}"><button class="btn btn-primary">Edit</button></a>
+            <a href="{% url 'delete_post' post.id %}"><button class="btn btn-primary">Delete</button></a>
           {% endif %}
       </div>
       {% endfor %}

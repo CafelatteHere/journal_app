@@ -1,0 +1,14 @@
+{% extends 'journal/base.html' %}
+
+{% block content %}
+Deleting post
+{{post.title}}
+{{post.text}}
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <h2>Deleting post! Are you sure?</h2>
+  <input type="submit" value="Yes!">
+</form>
+{% endblock content %}
+
