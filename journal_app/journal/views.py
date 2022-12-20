@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Post, RUBRIC_CHOICES
 from django.contrib.auth.models import User
+from django.views.generic.edit import UpdateView, DeleteView
 
 # Create your views here.
 def posts_list(request):
@@ -35,3 +36,9 @@ def create_post(request):
 
 
   return render(request, 'journal/create_post.html', context=context)
+
+class PostUpdate(UpdateView):
+  model = Post
+  template_name = 'journal/post_update.html'
+  fields = "__all__"
+  success_url = '/journal/my_posts/'
