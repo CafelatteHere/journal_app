@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from .models import Post, RUBRIC_CHOICES
 from django.contrib.auth.models import User
 from django.views.generic.edit import UpdateView, DeleteView
+from .forms import PostUpdateForm
 
 # Create your views here.
 def posts_list(request):
@@ -36,15 +37,17 @@ def create_post(request):
     return redirect(posts_list)
 
 
-  return render(request, 'journal/create_post.html', context=context)
+  return render(request, 'journal/post_form.html', context=context)
 
-class PostUpdate(UpdateView):
+class PostUpdateView(UpdateView):
   model = Post
-  template_name = 'journal/post_update.html'
-  fields = "__all__"
-  success_url = '/journal/my_posts/'
+  template_name = 'journal/post_update_form.html'
+  form_class = PostUpdateForm
+  # fields = ["title", "text", "image", "audio", "video", "rubric", "private"]
+  success_url = reverse_lazy('my_posts')
 
-class PostDelete(DeleteView):
+class PostDeleteView(DeleteView):
   model = Post
   template_name = 'journal/post_delete.html'
   success_url = reverse_lazy('my_posts')
+
