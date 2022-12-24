@@ -37,7 +37,7 @@ def create_post(request):
     return redirect(posts_list)
 
 
-  return render(request, 'journal/post_form.html', context=context)
+  return render(request, 'journal/post_create_form.html', context=context)
 
 class PostUpdateView(UpdateView):
   model = Post
