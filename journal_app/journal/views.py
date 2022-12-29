@@ -4,12 +4,15 @@ from .models import Post, RUBRIC_CHOICES
 from django.contrib.auth.models import User
 from django.views.generic.edit import UpdateView, DeleteView
 from .forms import PostUpdateForm
+from django import forms
+import datetime
 
 # Create your views here.
 def posts_list(request):
   posts_list = Post.objects.all()
   context = {
-    'posts_list': posts_list
+    'posts_list': posts_list,
+    'upd_timestamp' : int(datetime.datetime.now().timestamp())
   }
   return render(request, 'journal/my_posts.html', context=context)
 
@@ -43,8 +46,11 @@ class PostUpdateView(UpdateView):
   model = Post
   template_name = 'journal/post_update_form.html'
   form_class = PostUpdateForm
-  # fields = ["title", "text", "image", "audio", "video", "rubric", "private"]
+  # fields = ["title", "text", "image", "audio", "video", "rubric", "private", "updated"]
   success_url = reverse_lazy('my_posts')
+
+
+
 
 class PostDeleteView(DeleteView):
   model = Post

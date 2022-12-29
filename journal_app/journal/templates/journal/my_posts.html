@@ -18,12 +18,23 @@
         <img src="{{post.image}}" class="card-img-top" alt="post image here">
         <div class="card-body">
           <h5 class="card-title">{{post.title}}</h5>
-          <p class="card-text">{{post.text}}</p>
-          <p class="card-text">{{post.image}}</p>
-          <p class="card-text">{{post.audio}}</p>
-          <p class="card-text">{{post.video}}</p>
+          {% for field in fields %}
+            {% if not field.value == None or not field.value == "" %}
+              <p class="card-text">{{post.text}}</p>
+              <p class="card-text">{{post.image}}</p>
+              <p class="card-text">{{post.audio}}</p>
+              <p class="card-text">{{post.video}}</p>
+              <p class="card-text">{{post.updated}}</p>
+            {% endif %}
+          {% endfor %}
           <p class="card-text">{{post.rubric}}</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+
+          {% if post.updated != "updated" %}
+            <p class="card-text"><small class="text-muted">Created at {{post.created_at}}</small></p>
+          {% else %}
+          <p class="card-text"><small class="text-muted">Last updated at {{post.updated_at}}</small></p>
+          {% endif %}
+
           {% if post.private == True %}
             <p class="card-text"><small class="text-muted">Visible to: only myself</small></p>
           {% endif %}

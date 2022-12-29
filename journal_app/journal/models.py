@@ -22,6 +22,9 @@ class Post(models.Model):
   video = models.CharField(max_length=500, null=True, blank=True)
   rubric = models.CharField(max_length=100, default="No rubric", choices=RUBRIC_CHOICES)
   private = models.BooleanField(default=False)
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
+  updated = models.CharField(max_length=10, default="False")
 
   def __str__(self):
     return self.title
