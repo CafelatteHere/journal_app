@@ -46,10 +46,7 @@ class PostUpdateView(UpdateView):
   model = Post
   template_name = 'journal/post_update_form.html'
   form_class = PostUpdateForm
-  # fields = ["title", "text", "image", "audio", "video", "rubric", "private", "updated"]
   success_url = reverse_lazy('my_posts')
-
-
 
 
 class PostDeleteView(DeleteView):
