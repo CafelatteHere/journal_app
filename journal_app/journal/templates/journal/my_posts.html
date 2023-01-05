@@ -1,9 +1,11 @@
 {% extends 'journal/base.html' %}
 
 {% block content %}
+
 <div class="container text-center">
+
   <div class="row m-3">
-    <div class="col-2">
+    <div class="col-3">
       <h3>Posts list</h3>
       </br>
       <ul>
@@ -12,14 +14,16 @@
         {% endfor %}
         </ul>
     </div>
-    <div class="col-8">
+
+    <div class="col-7">
       {% for post in posts_list %}
       <div class="card mb-3">
         <img src="{{post.image}}" class="card-img-top" alt="post image here">
         <div class="card-body">
           <h5 class="card-title">{{post.title}}</h5>
+
           {% for field in fields %}
-            {% if not field.value == None or not field.value == "" %}
+            {% if not field.value == None and not field.value == "" %}
               <p class="card-text">{{post.text}}</p>
               <p class="card-text">{{post.image}}</p>
               <p class="card-text">{{post.audio}}</p>
@@ -42,12 +46,18 @@
             <a href="{% url 'update_post' post.id %}"><button class="btn btn-primary">Edit</button></a>
             <a href="{% url 'delete_post' post.id %}"><button class="btn btn-primary">Delete</button></a>
           {% endif %}
+        </div>
       </div>
       {% endfor %}
     </div>
-    <div class="col">
-      <a href="{% url 'create_post' %}"><button class="btn btn-primary">New Post</button></a>
+      {% comment %} {% endfor %} {% endcomment %}
+
+    <div class="col-2">
+      <div class="someclass md-12">
+        <a href="{% url 'create_post' %}"><button class="btn btn-primary">New Post</button></a>
+      </div>
     </div>
+
   </div>
 </div>
 
